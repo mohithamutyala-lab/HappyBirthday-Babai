@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Babai 🎂</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+height:100vh;
+overflow:hidden;
+background:linear-gradient(135deg,#14002e,#2a0057,#4b008f);
+position:relative;
+}
+
+/* STARS */
+
+body::before{
+content:'';
+position:absolute;
+width:100%;
+height:100%;
+background-image:
+radial-gradient(white 1px, transparent 1px);
+background-size:35px 35px;
+opacity:0.5;
+animation:stars 40s linear infinite;
+}
+
+@keyframes stars{
+from{
+transform:translateY(0);
+}
+to{
+transform:translateY(-200px);
+}
+}
+
+/* LOTS OF BALLOONS */
+
+.balloon{
+position:absolute;
+font-size:80px;
+animation:float 6s infinite ease-in-out;
+z-index:2;
+}
+
+@keyframes float{
+0%{
+transform:translateY(0);
+}
+50%{
+transform:translateY(-35px);
+}
+100%{
+transform:translateY(0);
+}
+}
+
+/* BUTTERFLIES */
+
+.butterfly{
+position:absolute;
+font-size:45px;
+animation:fly 10s linear infinite;
+z-index:1;
+opacity:0.9;
+}
+
+@keyframes fly{
+0%{
+transform:translateY(100vh) translateX(0);
+}
+100%{
+transform:translateY(-120vh) translateX(250px);
+}
+}
+
+/* TITLE */
+
+.title{
+text-align:center;
+margin-top:25px;
+position:relative;
+z-index:10;
+}
+
+.title h1{
+font-size:78px;
+color:white;
+text-shadow:
+0 0 20px #ff4df0,
+0 0 50px #ff4df0;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{
+text-shadow:0 0 15px #ff4df0;
+}
+to{
+text-shadow:0 0 45px #ff4df0,
+0 0 90px #ff4df0;
+}
+}
+
+.title p{
+font-size:30px;
+color:#ffe66d;
+margin-top:10px;
+}
+
+/* CAKE */
+
+.cake-area{
+position:relative;
+width:330px;
+margin:35px auto;
+z-index:10;
+}
+
+.candle{
+width:18px;
+height:70px;
+background:white;
+margin:auto;
+border-radius:10px;
+position:relative;
+}
+
+.flame{
+width:22px;
+height:22px;
+background:gold;
+border-radius:50%;
+position:absolute;
+top:-18px;
+left:-2px;
+box-shadow:0 0 25px orange;
+animation:flicker .4s infinite alternate;
+}
+
+@keyframes flicker{
+from{
+transform:scale(1);
+}
+to{
+transform:scale(1.2);
+}
+}
+
+.layer-top{
+width:180px;
+height:65px;
+background:white;
+margin:10px auto;
+border-radius:20px;
+}
+
+.layer-bottom{
+width:280px;
+height:100px;
+background:#ffafcc;
+margin:auto;
+border-radius:20px;
+position:relative;
+}
+
+/* QR */
+
+.qr{
+position:absolute;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+cursor:pointer;
+transition:0.4s;
+}
+
+.qr:hover{
+transform:translate(-50%,-50%) scale(1.1);
+}
+
+.qr img{
+width:95px;
+border:4px solid white;
+border-radius:10px;
+}
+
+/* GIFT */
+
+.gift-box{
+position:absolute;
+right:90px;
+top:320px;
+cursor:pointer;
+transition:0.4s;
+z-index:20;
+text-align:center;
+}
+
+.gift-box:hover{
+transform:scale(1.1);
+}
+
+.click-text{
+color:white;
+font-size:28px;
+font-weight:bold;
+margin-top:-10px;
+text-shadow:0 0 15px #ff4df0;
+animation:glowText 1.5s infinite alternate;
+}
+
+@keyframes glowText{
+
+from{
+opacity:0.7;
+transform:scale(1);
+}
+
+to{
+opacity:1;
+transform:scale(1.08);
+}
+
+}
+
+/* POPUP */
+
+.popup{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%) scale(0);
+width:75%;
+padding:40px;
+border-radius:30px;
+background:rgba(255,255,255,0.12);
+backdrop-filter:blur(15px);
+text-align:center;
+color:white;
+transition:0.5s;
+z-index:100;
+border:2px solid rgba(255,255,255,0.2);
+overflow:hidden;
+}
+
+.popup.active{
+transform:translate(-50%,-50%) scale(1);
+}
+
+.popup h2{
+font-size:48px;
+color:#ffe66d;
+margin-bottom:25px;
+}
+
+.popup p{
+font-size:25px;
+line-height:1.8;
+}
+
+.close{
+position:absolute;
+right:20px;
+top:10px;
+font-size:45px;
+cursor:pointer;
+}
+
+/* SURPRISE PHOTO POPUP */
+
+.surprise{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%) scale(0);
+background:rgba(255,255,255,0.12);
+backdrop-filter:blur(15px);
+padding:30px;
+border-radius:30px;
+text-align:center;
+z-index:200;
+transition:0.5s;
+overflow:hidden;
+width:480px;
+}
+
+.surprise.active{
+transform:translate(-50%,-50%) scale(1);
+}
+
+.surprise img{
+width:100%;
+height:450px;
+object-fit:cover;
+border-radius:25px;
+border:6px solid white;
+box-shadow:0 0 35px #ff4df0;
+}
+
+.surprise h2{
+margin-top:20px;
+font-size:36px;
+color:white;
+}
+
+/* BLASTS */
+
+.blast{
+position:absolute;
+font-size:50px;
+animation:blast 1s infinite;
+}
+
+@keyframes blast{
+from{
+transform:scale(0);
+opacity:1;
+}
+to{
+transform:scale(2);
+opacity:0;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOTS OF BALLOONS -->
+
+<div class="balloon" style="left:2%; top:120px;">🎈</div>
+<div class="balloon" style="left:8%; top:450px;">🎈</div>
+<div class="balloon" style="left:18%; top:250px;">🎈</div>
+<div class="balloon" style="left:28%; top:520px;">🎈</div>
+<div class="balloon" style="left:38%; top:180px;">🎈</div>
+
+<div class="balloon" style="right:2%; top:120px;">🎈</div>
+<div class="balloon" style="right:10%; top:450px;">🎈</div>
+<div class="balloon" style="right:18%; top:240px;">🎈</div>
+<div class="balloon" style="right:28%; top:520px;">🎈</div>
+<div class="balloon" style="right:38%; top:170px;">🎈</div>
+
+<!-- LOTS OF BUTTERFLIES -->
+
+<div class="butterfly" style="left:5%; animation-delay:0s;">🦋</div>
+<div class="butterfly" style="left:15%; animation-delay:2s;">🦋</div>
+<div class="butterfly" style="left:28%; animation-delay:4s;">🦋</div>
+<div class="butterfly" style="left:42%; animation-delay:1s;">🦋</div>
+<div class="butterfly" style="left:58%; animation-delay:3s;">🦋</div>
+<div class="butterfly" style="left:72%; animation-delay:5s;">🦋</div>
+<div class="butterfly" style="left:85%; animation-delay:2s;">🦋</div>
+
+<!-- TITLE -->
+
+<div class="title">
+
+<h1>🎉 Happy Birthday Babai 🎂</h1>
+
+<p>
+Wishing you joy, success, laughter & endless happiness ✨
+</p>
+
+</div>
+
+<!-- CAKE -->
+
+<div class="cake-area">
+
+<div class="candle">
+<div class="flame"></div>
+</div>
+
+<div class="layer-top"></div>
+
+<div class="layer-bottom">
+
+<!-- QR CODE -->
+
+<div class="qr" onclick="openPopup()">
+
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=HappyBirthdayBabai">
+
+</div>
+
+</div>
+
+</div>
+
+<!-- GIFT BOX -->
+
+<div class="gift-box" onclick="openGift()">
+👇 Click Here 👇
+
+<div style="font-size:150px;">🎁</div>
+<div class="click-text">
+</div>
+
+</div>
+
+<!-- QR POPUP -->
+
+<div class="popup" id="popup">
+
+<span class="close" onclick="closePopup()">×</span>
+
+<h2>🦋 Special Wishes for Babai 🦋</h2>
+
+<p>
+
+✨ “Babai, your support and love make every moment beautiful.”<br><br>
+
+✨ “A wonderful Babai like you deserves happiness every day.”<br><br>
+
+✨ “Your smile, kindness and guidance are precious gifts to our family.”<br><br>
+
+✨ “May your birthday be filled with joy, laughter and unforgettable memories.” 🎂
+
+</p>
+
+</div>
+
+<!-- GIFT SURPRISE -->
+
+<div class="surprise" id="surprise">
+
+<span class="close" onclick="closeGift()">×</span>
+
+<!-- BLASTS -->
+
+<div class="blast" style="top:20px; left:20px;">🎉</div>
+<div class="blast" style="top:20px; right:20px;">✨</div>
+<div class="blast" style="bottom:20px; left:30px;">🎊</div>
+<div class="blast" style="bottom:20px; right:30px;">💥</div>
+<div class="blast" style="top:50%; left:50%;">🎆</div>
+
+<!-- YOUR PHOTO -->
+
+<img src="babai.img.JPEG" alt="Babai Photo">
+
+<h2>
+💕 Happy Birthday My Dear Sweet Babai 💕
+</h2>
+
+</div>
+
+<script>
+
+function openPopup(){
+
+document.getElementById('popup').classList.add('active');
+
+}
+
+function closePopup(){
+
+document.getElementById('popup').classList.remove('active');
+
+}
+
+function openGift(){
+
+document.getElementById('surprise').classList.add('active');
+
+}
+
+function closeGift(){
+
+document.getElementById('surprise').classList.remove('active');
+
+}
+
+</script>
+
+</body>
+</html>
